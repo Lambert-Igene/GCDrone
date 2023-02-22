@@ -49,9 +49,8 @@ while(True):
     frames = align.process(frames)
     color_frame = frames.get_color_frame()
     color_image = np.asanyarray(color_frame.get_data())
-    # if cap_idx == 4:    # only save depth when doing pointing gesture
-    #     depth_frame = frames.get_depth_frame()
-    #     depth_image = np.asanyarray(depth_frame.get_data())
+    # depth_frame = frames.get_depth_frame()
+    # depth_image = np.asanyarray(depth_frame.get_data())
     #ret, depth_frame, frame = dc.get_frame()
     cv2.imshow('frame', color_image)
     
@@ -69,20 +68,16 @@ while(True):
         
         fcount = "{:05n}".format(countR)
         imgName1 = capName[cap_idx] + fcount + '.png'
-        # if cap_idx == 4:    # only save depth when doing pointing gesture
-        #     imgName2 = "Depth" + fcount + '.png'
+        # imgName2 = "Depth" + fcount + '.png'
         countR += 1
         filename = os.path.join(DIR,capName[cap_idx])
         filename1 = os.path.join(filename,imgName1)
-        # if cap_idx == 4:    # only save depth when doing pointing gesture
-        #     filename2 = os.path.join(filename,imgName2)
+        # filename2 = os.path.join(filename,imgName2)
         cv2.imwrite(filename1,color_image)
-        # if cap_idx == 4:    # only save depth when doing pointing gesture
-        #     depth_image.astype(np.uint16)
+        # depth_image.astype(np.uint16)
         #print(depth_image.dtype)
         #print(depth_image.shape)
-        # if cap_idx == 4:    # only save depth when doing pointing gesture
-        #     cv2.imwrite(filename2,depth_image)
+        # cv2.imwrite(filename2,depth_image)
             # print(depth_image)
         # print(f'Capturing Radial Image {countR}')    
         countR += 1
