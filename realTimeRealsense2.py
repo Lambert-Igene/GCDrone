@@ -7,7 +7,6 @@ import numpy as np
 # from tello_dummy import Tello
 from djitellopy import Tello
 from Gestures import Gestures, GestureDetector
-from Director import DirectionDetector
 
 import os
 if os.name == 'nt':
@@ -20,7 +19,6 @@ else:
 
 hands = mp.solutions.hands.Hands()
 gest_detect = GestureDetector()
-direction_detect = DirectionDetector()
 
 # tello = Tello()
 # tello.connect()
