@@ -35,3 +35,4 @@ Show the stop gesture (open hand) to land the drone.
 
 ## Dataset
 https://drive.google.com/drive/folders/126N4l7qGfchTwiwzxlBmBZYko2HLmrqa?usp=sharing
+If you would like to collect more data, run the dataCollection.py file
