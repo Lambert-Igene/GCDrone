@@ -7,6 +7,7 @@ import numpy as np
 # from tello_dummy import Tello
 from djitellopy import Tello
 from Gestures import Gestures, GestureDetector
+from Director import DirectionDetector
 
 import os
 if os.name == 'nt':
@@ -19,8 +20,9 @@ else:
 
 hands = mp.solutions.hands.Hands()
 gest_detect = GestureDetector()
+direction_detect = DirectionDetector()
 
-# tello = Tello()
+tello = Tello()
 # tello.connect()
 
 #cap = cv2.VideoCapture(0)
@@ -115,23 +117,23 @@ def get_Direction(hand_landmarks, depth_image):
     last_command = ""
     # move left/right (if applicable)
     if(x_move < 0):
-        # tello.move_left(abs(int(x_move)))
+        tello.move_left(abs(int(x_move)))
         print("move left") 
         last_command += "left " + str(abs(int(x_move)))
         print(x_move)
     elif(x_move > 0):
-        # tello.move_right(int(x_move))
+        tello.move_right(abs(int(x_move)))
         print("move right") 
         last_command += "right " + str(abs(int(x_move)))
         print(x_move)
     # move forward/backward (if applicable)
     if(z_move > 0):
-        # tello.move_forward(int(z_move))
+        tello.move_forward(abs(int(z_move)))
         print("move forward") 
         last_command += "forward " + str(abs(int(z_move)))
         print(z_move)
     elif(z_move < 0):
-        # tello.move_backward(abs(int(z_move)))
+        tello.move_back(abs(int(z_move)))
         print("move backward") 
         last_command += "backward " + str(abs(int(z_move)))
         print(z_move)
@@ -212,10 +214,10 @@ frame_count = 0
 last_command = 'continue'
 LastGesture = Gestures.NO_CONF
 timer.Restart()
-time_between_direction_updates = timer.one_second*2
+time_between_direction_updates = timer.one_second*1
 last_command_time = time_between_direction_updates
-# tello.connect()
-# tello.takeoff()
+tello.connect()
+tello.takeoff()
 # tello.send_command("takeoff")
 prev_gestures = []
 try:
@@ -261,18 +263,17 @@ try:
             # send command to tello drone based on gesture
             if LastGesture == Gestures.UP:
                 last_command = 'up 20'
-                # tello.move_up(40)
+                tello.move_up(40)
             elif LastGesture == Gestures.DOWN:
                 last_command = 'down 20'
-                # tello.move_down(40)
+                tello.move_down(40)
             elif LastGesture == Gestures.POINT:
                 # last_command = 'continue'
                 last_command = get_Direction(last_hand_land, last_point_depth)
-                # last_command = 'go 20 20 20'
             elif LastGesture == Gestures.OPEN:
                 last_command = 'land'
                 # tello.send_command(last_command)
-                # tello.land()
+                tello.land()
                 raise KeyboardInterrupt
             elif LastGesture == Gestures.NO_CONF:
                 last_command = 'continue'
@@ -281,8 +282,7 @@ try:
             last_command_time = 0
             prev_gestures = []
         else:
-            pass
-            # tello.send_command('continue')
+            last_command = 'continue'
             # prev_gestures = []
 
         cv2.putText(original_image, last_command, (0, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 4)
