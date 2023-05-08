@@ -25,7 +25,7 @@ Connect to the drone's wifi network on the system you are using to run the code
 ### Running Code:
 Navigate to the top level repository folder (<Repo Download Location\GCDrone>)  
 With all the dependences installed and the RealSense camera connected to your computer run the command:  
-`python3 realTimeRealsense.py`  
+`python3 .\realTimeRealsense.py`  
 
 A window showing the RealSense color camera feed should appear.
 Present the start gesture (closed fist) to the camera for about 3 seconds.
