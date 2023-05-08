@@ -36,6 +36,6 @@ Show the stop gesture (open hand) to land the drone.
 ## Dataset
 https://drive.google.com/drive/folders/126N4l7qGfchTwiwzxlBmBZYko2HLmrqa?usp=sharing
 
-If you would like to collect more data, run the dataCollection.py file
-If you would like to collect 3D data, run the DataCollectionWith3D.py file
-If you would like to convert your data to the key points embedded, run the ConvertingByKp.py file 
+If you would like to collect more data, run the dataCollection.py file.
+If you would like to collect 3D data (there is a sample in our dataset), run the DataCollectionWith3D.py file.
+If you would like to convert your data to the key points embedded, run the ConvertingByKp.py file.
